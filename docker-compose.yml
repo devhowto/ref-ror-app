@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    container_name: db_ror_blog1_dev
+    restart: always
+    env_file: .env
+    volumes:
+      - "ror_blog1_dbdata:/var/lib/postgresql/data"
+      - "./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file: .env
+    ports:
+      ##
+      # http://localhost:8081
+      #
+      - "8081:80"
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    env_file:
+      .env.rails.dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  ror_blog1_dbdata:
