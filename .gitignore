@@ -38,3 +38,9 @@
 #
 .env
 .env.rails.dev
+
+##
+# Bash and IRB history.
+#
+.bash_history
+.irb_history
