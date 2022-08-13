@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_12_221432) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_13_102250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_221432) do
     t.datetime "updated_at", null: false
     t.string "excerpt", limit: 2048
     t.string "location", limit: 512
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -43,5 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_221432) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "profiles", "users"
 end
