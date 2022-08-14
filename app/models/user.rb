@@ -1,5 +1,11 @@
 class User < ApplicationRecord
-  validates :email, 
+  include ActiveModel::SecurePassword
+  has_secure_password
+  has_secure_password :recovery_password, validations: false
+
+  attr_accessor :password_digest, :recovery_password_digest
+
+  validates :email,
     uniqueness: true,
     length: {
       within: 5..50,
