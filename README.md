@@ -2,8 +2,33 @@
 
 ## Useful Commands
 
+Starts services defined in `docker-compose.yml`:
+
+```shell-session
+$ docker compose up
+```
+
+Gracefully stops services defined in `docker-compose.yml`:
+
+```shell-session
+$ docker compose down
+```
+
 ```shell-session
 $ docker exec -it db_ror_blog1_dev psql -U blog1 -d blog1_dev;
+```
+
+Run rails commands from the running container (not from local shell):
+
+```shell-session
+$ docker compose run web \
+    bin/rails generate scaffold Article \
+		title:string{128} \
+		location:string{512} \
+		excerpt:string{2024} \
+		body:text \
+		published_at:datetime \
+    --no-migration
 ```
 
 development:
