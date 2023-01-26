@@ -14,8 +14,16 @@ Gracefully stops services defined in `docker-compose.yml`:
 $ docker compose down
 ```
 
+Connect to the database with psql:
+
 ```shell-session
-$ docker exec -it db_ror_blog1_dev psql -U blog1 -d blog1_dev;
+$ docker exec -it db_ror_blog1_dev psql -U blog1 -d blog1_dev -W
+```
+
+Or with `docker compose`:
+
+```shell-session
+$ docker compose exec db psql -U blog1 -d blog1_dev -W
 ```
 
 Run rails commands from the running container (not from local shell):
@@ -31,6 +39,7 @@ $ docker compose run web \
     --no-migration
 ```
 
+```shell-session
 development:
   <<: *default
   host: <%= ENV.fetch("DB_BLOG1_HOST") %>
@@ -38,6 +47,7 @@ development:
   username: <%= ENV.fetch("DB_BLOG1_USERNAME") %>
   password: <%= ENV.fetch("DB_BLOG1_PASSWORD") %>
   database: <%= ENV.fetch("DB_BLOG1_DATABASE") %>
+```
 
 ## Configuration References
 
