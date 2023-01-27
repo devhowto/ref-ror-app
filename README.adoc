@@ -38,12 +38,12 @@ Run rails commands from the running container (not from local shell):
 ----
 $ docker compose run web \
     bin/rails generate scaffold Article \
-		title:string{128} \
-		location:string{512} \
-		excerpt:string{2024} \
-		body:text \
-		published_at:datetime \
-    --no-migration
+      title:string{128} \
+      location:string{512} \
+      excerpt:string{2024} \
+      body:text \
+      published_at:datetime \
+      --no-migration
 ----
 
 [source,shell-session]
