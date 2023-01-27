@@ -15,7 +15,7 @@ trim_trailing_whitespace = false
 indent_style = tab
 indent_size = 2
 
-[*.{c,hs,rb,js,ts,java,css,html}]
+[*.{c,hs,rb,js,ts,java,css,html,adoc,md}]
 indent_style = space
 indent_size = 2
 
