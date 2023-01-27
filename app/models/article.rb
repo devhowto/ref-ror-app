@@ -8,7 +8,7 @@ class Article < ApplicationRecord
   scope :published, -> { where.not(published_at: nil) }
   scope :draft, -> { where(published_at: nil) }
   scope :recent, -> { where('articles.published_at > ?', 1.week.ago.to_date) }
-  scope :where_title, -> (q) { where('articles.title ILIKE ?', "%#{q}%") }
+  scope :where_title, ->(q) { where('articles.title ILIKE ?', "%#{q}%") }
 
   def long_title
     "#{title} - #{published_at}"
@@ -19,8 +19,8 @@ class Article < ApplicationRecord
   end
 end
 
-=begin
-Using a lambda makes the scope be reevaluated every time
-it is used. Using some other approach would make the scope
-be evaluated only once, and then we would return stale data.
-=end
+##
+# Using a lambda makes the scope be reevaluated every time it is used.
+# Using some other approach would make the scope be evaluated only once,
+# and then we would return stale data.
+##
