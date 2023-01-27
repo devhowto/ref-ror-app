@@ -1,34 +1,41 @@
-# Blog RoR App
+= Blog RoR App
+:icons: font
+:toc: left
 
-## Useful Commands
+== Useful Commands
 
 Starts services defined in `docker-compose.yml`:
 
-```shell-session
+[source,shell-session]
+----
 $ docker compose up
-```
+----
 
 Gracefully stops services defined in `docker-compose.yml`:
 
-```shell-session
+[source,shell-session]
+----
 $ docker compose down
-```
+----
 
 Connect to the database with psql:
 
-```shell-session
+[source,shell-session]
+----
 $ docker exec -it db_ror_blog1_dev psql -U blog1 -d blog1_dev -W
-```
+----
 
 Or with `docker compose`:
 
-```shell-session
+[source,shell-session]
+----
 $ docker compose exec db psql -U blog1 -d blog1_dev -W
-```
+----
 
 Run rails commands from the running container (not from local shell):
 
-```shell-session
+[source,shell-session]
+----
 $ docker compose run web \
     bin/rails generate scaffold Article \
 		title:string{128} \
@@ -37,9 +44,10 @@ $ docker compose run web \
 		body:text \
 		published_at:datetime \
     --no-migration
-```
+----
 
-```shell-session
+[source,shell-session]
+----
 development:
   <<: *default
   host: <%= ENV.fetch("DB_BLOG1_HOST") %>
@@ -47,7 +55,7 @@ development:
   username: <%= ENV.fetch("DB_BLOG1_USERNAME") %>
   password: <%= ENV.fetch("DB_BLOG1_PASSWORD") %>
   database: <%= ENV.fetch("DB_BLOG1_DATABASE") %>
-```
+----
 
 ## Configuration References
 
