@@ -40,7 +40,8 @@
 .env.rails.dev
 
 ##
-# Bash and IRB history.
+# Bash, IRB, and psql history.
 #
 .bash_history
 .irb_history
+.psql_history
