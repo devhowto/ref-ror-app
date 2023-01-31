@@ -6,9 +6,9 @@ class Comment < ApplicationRecord
   after_create :email_article_author
 
   def article_should_be_published
-    if article && !article.published?
-      errors.add(:article_id, 'is not published yet')
-    end
+    return unless article&.published?
+
+    errors.add(:article_id, 'is not published yet')
   end
 
   def email_article_author
